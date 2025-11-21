@@ -125,7 +125,7 @@ const Home: React.FC = () => {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover animate-zoom"
             poster={IMAGES.hero}
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-waves-hitting-the-beach-2660-large.mp4" type="video/mp4" />

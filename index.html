@@ -44,7 +44,17 @@
               handwriting: ['"Kaushan Script"', 'cursive'], // For Logo
             },
             backgroundImage: {
-              'hero-overlay': 'linear-gradient(to bottom, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.8) 100%)',
+              'hero-overlay': 'linear-gradient(to bottom, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 0.6) 100%)',
+            },
+            keyframes: {
+              zoom: {
+                '0%': { transform: 'scale(1)' },
+                '100%': { transform: 'scale(1.1)' },
+              }
+            },
+            animation: {
+              zoom: 'zoom 20s ease-in-out infinite alternate',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
             }
           },
         },

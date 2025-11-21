@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Globe } from 'lucide-react';
 import { NAV_ITEMS, COMPANY_INFO } from '../constants';
@@ -109,39 +110,43 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed inset-0 bg-slate-900 transition-transform duration-300 z-[9999] flex items-center justify-center ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <button
-          className="absolute top-6 right-6 text-white p-2"
-          onClick={() => setIsOpen(false)}
-          aria-label="Close Menu"
-        >
-          <X size={32} />
-        </button>
-
-        <nav className="flex flex-col items-center gap-8 text-white w-full px-4">
-          <div className="font-handwriting text-4xl text-primary-light mb-4">Run To New</div>
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="text-2xl font-serif font-bold hover:text-secondary transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.path === '/' ? t.nav.home :
-                item.path === '/tours' ? t.nav.tours :
-                  item.path === '/about' ? t.nav.about :
-                    item.path === '/contact' ? t.nav.contact : item.label}
-            </Link>
-          ))}
-          <a
-            href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}
-            className="mt-4 flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg text-lg font-bold"
+      {/* Mobile Menu Overlay - Portaled to body to avoid z-index issues */}
+      {isOpen && createPortal(
+        <div className="fixed inset-0 bg-slate-900 z-[9999] flex items-center justify-center animate-fade-in">
+          <button
+            className="absolute top-6 right-6 text-white p-2 hover:text-secondary transition-colors"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close Menu"
           >
-            <Phone size={20} />
-            <span>{t.nav.callUs}</span>
-          </a>
-        </nav>
-      </div>
+            <X size={32} />
+          </button>
+
+          <nav className="flex flex-col items-center gap-8 text-white w-full px-4">
+            <div className="font-handwriting text-4xl text-primary-light mb-4">Run To New</div>
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="text-2xl font-serif font-bold hover:text-secondary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.path === '/' ? t.nav.home :
+                  item.path === '/tours' ? t.nav.tours :
+                    item.path === '/about' ? t.nav.about :
+                      item.path === '/contact' ? t.nav.contact : item.label}
+              </Link>
+            ))}
+            <a
+              href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}
+              className="mt-4 flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg text-lg font-bold hover:bg-primary-dark transition-colors shadow-lg"
+            >
+              <Phone size={20} />
+              <span>{t.nav.callUs}</span>
+            </a>
+          </nav>
+        </div>,
+        document.body
+      )}
     </header>
   );
 };
