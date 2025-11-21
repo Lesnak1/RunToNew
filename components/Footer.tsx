@@ -1,80 +1,101 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import { COMPANY_INFO, NAV_ITEMS } from '../constants';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-dark text-white pt-16 pb-8">
+    <footer className="bg-dark text-white pt-20 pb-10 border-t border-white/10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          
-          {/* Brand Column */}
-          <div className="flex flex-col items-start gap-4">
-            <div className="flex items-center gap-2">
-              <Compass className="w-8 h-8 text-secondary" />
-              <h2 className="text-2xl font-bold font-serif">Run To New Travel</h2>
-            </div>
-            <p className="text-dark-muted text-sm leading-relaxed max-w-xs">
-              Your premium gateway to the wonders of Fethiye. Let us craft your perfect, stress-free holiday with our local expertise and passion for travel.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <div>
+            <Link to="/" className="flex flex-col items-start mb-6">
+              <span className="font-handwriting text-4xl text-primary mb-2">Run To New</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-sans font-semibold">
+                Tourism Travel & Transportation
+              </span>
+            </Link>
+            <p className="text-slate-400 leading-relaxed mb-6">
+              {t.footer.about}
             </p>
-            <div className="flex gap-4 mt-2">
-              <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-primary transition-colors">
+            <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center transition-colors text-white">
+                <Instagram size={20} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center transition-colors text-white">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-primary transition-colors">
-                <Instagram size={20} />
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center transition-colors text-white">
+                <Twitter size={20} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6 border-b border-white/10 pb-2 inline-block">Explore</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xl font-bold font-serif mb-6">{t.footer.explore}</h3>
+            <ul className="space-y-4">
               {NAV_ITEMS.map((item) => (
                 <li key={item.path}>
-                  <Link to={item.path} className="text-dark-muted hover:text-primary transition-colors text-sm">
-                    {item.label}
+                  <Link to={item.path} className="text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/50 group-hover:bg-primary transition-colors"></span>
+                    {item.path === '/' ? t.nav.home :
+                      item.path === '/tours' ? t.nav.tours :
+                        item.path === '/about' ? t.nav.about :
+                          item.path === '/contact' ? t.nav.contact : item.label}
                   </Link>
                 </li>
               ))}
-              <li><Link to="/terms" className="text-dark-muted hover:text-primary transition-colors text-sm">Terms of Service</Link></li>
-              <li><Link to="/privacy" className="text-dark-muted hover:text-primary transition-colors text-sm">Privacy Policy</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold mb-6 border-b border-white/10 pb-2 inline-block">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-dark-muted">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <div>
-                  <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`} className="hover:text-white block">
-                    {COMPANY_INFO.phoneDisplay}
-                  </a>
-                </div>
+            <h3 className="text-xl font-bold font-serif mb-6">{t.footer.contact}</h3>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4">
+                <MapPin size={20} className="text-primary shrink-0 mt-1" />
+                <span className="text-slate-400">{COMPANY_INFO.address}</span>
               </li>
-              <li className="flex items-start gap-3 text-dark-muted">
-                <Mail className="w-5 h-5 text-primary shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-white break-all">
+              <li className="flex items-center gap-4">
+                <Phone size={20} className="text-primary shrink-0" />
+                <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`} className="text-slate-400 hover:text-white transition-colors">
+                  {COMPANY_INFO.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail size={20} className="text-primary shrink-0" />
+                <a href={`mailto:${COMPANY_INFO.email}`} className="text-slate-400 hover:text-white transition-colors">
                   {COMPANY_INFO.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-dark-muted">
-                <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>{COMPANY_INFO.address}</span>
-              </li>
             </ul>
+          </div>
+
+          {/* Newsletter (Optional - keeping simple for now) */}
+          <div>
+            <h3 className="text-xl font-bold font-serif mb-6">Instagram</h3>
+            <div className="grid grid-cols-3 gap-2">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="aspect-square bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"></div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-xs text-dark-muted">
-            © {new Date().getFullYear()} {COMPANY_INFO.name}. All Rights Reserved.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-500 text-sm">
+            &copy; {currentYear} Run To New Travel. {t.footer.rights}
           </p>
+          <div className="flex gap-6 text-sm text-slate-500">
+            <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
+          </div>
         </div>
       </div>
     </footer>

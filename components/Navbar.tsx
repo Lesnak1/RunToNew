@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Globe } from 'lucide-react';
 import { NAV_ITEMS, COMPANY_INFO } from '../constants';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
 
   // Handle scroll effect for transparent to solid navbar
   useEffect(() => {
@@ -35,6 +37,10 @@ const Navbar: React.FC = () => {
     ${location.pathname === path ? 'text-secondary' : ''}
   `;
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'tr' : 'en');
+  };
+
   return (
     <header className={headerClass}>
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -52,27 +58,54 @@ const Navbar: React.FC = () => {
         <nav className="hidden md:flex items-center gap-8">
           {NAV_ITEMS.map((item) => (
             <Link key={item.path} to={item.path} className={linkClass(item.path)}>
-              {item.label}
+              {/* Map simple labels to translation keys if possible, or just use label for now. 
+                  Ideally NAV_ITEMS should be dynamic or mapped. 
+                  For now, we'll map manually based on path or label. */}
+              {item.path === '/' ? t.nav.home :
+                item.path === '/tours' ? t.nav.tours :
+                  item.path === '/about' ? t.nav.about :
+                    item.path === '/contact' ? t.nav.contact : item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
             </Link>
           ))}
+
+          {/* Language Switcher */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-1 font-bold uppercase text-sm hover:text-secondary transition-colors ${scrolled || !isHome ? 'text-dark' : 'text-white'}`}
+          >
+            <Globe size={16} />
+            {language}
+          </button>
+
           <a
             href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}
             className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             <Phone size={16} />
-            <span>Book Now</span>
+            <span>{t.nav.bookNow}</span>
           </a>
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X size={24} className={scrolled || !isHome ? 'text-dark' : 'text-white'} /> : <Menu size={24} className={scrolled || !isHome ? 'text-dark' : 'text-white'} />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          {/* Mobile Language Switcher */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-1 font-bold uppercase text-sm hover:text-secondary transition-colors ${scrolled || !isHome ? 'text-dark' : 'text-white'}`}
+          >
+            <Globe size={18} />
+            {language}
+          </button>
+
+          <button
+            className="p-2 cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X size={24} className={scrolled || !isHome ? 'text-dark' : 'text-white'} /> : <Menu size={24} className={scrolled || !isHome ? 'text-dark' : 'text-white'} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -94,7 +127,10 @@ const Navbar: React.FC = () => {
               className="text-2xl font-serif font-bold hover:text-secondary transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              {item.label}
+              {item.path === '/' ? t.nav.home :
+                item.path === '/tours' ? t.nav.tours :
+                  item.path === '/about' ? t.nav.about :
+                    item.path === '/contact' ? t.nav.contact : item.label}
             </Link>
           ))}
           <a
@@ -102,7 +138,7 @@ const Navbar: React.FC = () => {
             className="mt-4 flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg text-lg font-bold"
           >
             <Phone size={20} />
-            <span>Call Us</span>
+            <span>{t.nav.callUs}</span>
           </a>
         </nav>
       </div>
