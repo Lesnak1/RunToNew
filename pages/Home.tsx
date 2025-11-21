@@ -74,38 +74,38 @@ const FEATURED_TOURS: Tour[] = [
 const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
-    name: 'Sarah & Tom L.',
+    name: 'Sarah & Tom Lawson',
     quote: "An absolutely unforgettable experience! The private boat trip was the highlight of our vacation. Everything was perfectly organized by the team.",
     rating: 5,
-    avatar: IMAGES.avatar1
+    avatar: IMAGES.avatar3 // Couple
   },
   {
     id: 't2',
-    name: 'Mark D.',
+    name: 'Mark Davidson',
     quote: "Run To New Travel made our trip completely stress-free. Their local knowledge is second to none. The paragliding transfer was smooth and professional.",
     rating: 5,
-    avatar: IMAGES.avatar2
+    avatar: IMAGES.avatar2 // Male
   },
   {
     id: 't3',
-    name: 'Elena K.',
+    name: 'Elena Kovač',
     quote: "We booked the Dalyan tour and it was magical. The guide was so knowledgeable and the lunch was delicious. Highly recommended!",
     rating: 5,
-    avatar: IMAGES.avatar1
+    avatar: IMAGES.avatar5 // Stylish Woman
   },
   {
     id: 't4',
-    name: 'James P.',
+    name: 'James Peterson',
     quote: "Best travel agency in Fethiye. They handled all our transfers and tours. The VIP service is real!",
     rating: 5,
-    avatar: IMAGES.avatar2
+    avatar: IMAGES.avatar4 // Young Male Backpacker
   },
   {
     id: 't5',
-    name: 'Sophie M.',
+    name: 'Sophie Miller',
     quote: "I was nervous about paragliding but they made me feel so safe. The photos are incredible. Thank you Run To New!",
     rating: 5,
-    avatar: IMAGES.avatar1
+    avatar: IMAGES.avatar1 // Female
   }
 ];
 

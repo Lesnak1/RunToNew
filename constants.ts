@@ -55,7 +55,7 @@ export const IMAGES = {
   // TESTIMONIALS:
   avatar1: "/images/avatar1.png",
   avatar2: "/images/avatar2.png",
-  avatar3: "/images/avatar1.png", // Reusing
-  avatar4: "/images/avatar2.png", // Reusing
-  avatar5: "/images/avatar1.png", // Reusing
+  avatar3: "/images/avatar3.png",
+  avatar4: "/images/avatar4.png",
+  avatar5: "/images/avatar5.png",
 };
