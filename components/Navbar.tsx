@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed inset-0 bg-dark transition-transform duration-300 z-[9999] flex items-center justify-center ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`md:hidden fixed inset-0 bg-slate-900 transition-transform duration-300 z-[9999] flex items-center justify-center ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <button
           className="absolute top-6 right-6 text-white p-2"
           onClick={() => setIsOpen(false)}

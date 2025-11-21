@@ -134,8 +134,11 @@ const Home: React.FC = () => {
         </div>
 
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-20">
-          <h1 className="text-5xl md:text-7xl font-bold font-serif mb-6 leading-tight animate-fade-in-up drop-shadow-lg">
-            {t.hero.title}
+          <h1 className="text-5xl md:text-7xl font-bold font-serif mb-6 leading-tight animate-fade-in-up drop-shadow-2xl">
+            <span className="block text-white mb-2">{t.hero.titlePrefix}</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-amber-500 pb-2">
+              {t.hero.titleHighlight}
+            </span>
           </h1>
           <p className="text-xl md:text-2xl font-light max-w-2xl mb-10 opacity-90 animate-fade-in-up delay-200 drop-shadow-md">
             {t.hero.subtitle}
@@ -214,9 +217,6 @@ const Home: React.FC = () => {
                     alt={tour.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-slate-900">
-                    {tour.price}
-                  </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-secondary text-sm font-bold mb-2">

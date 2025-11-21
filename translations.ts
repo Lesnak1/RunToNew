@@ -9,7 +9,8 @@ export const translations = {
             callUs: "Call Us",
         },
         hero: {
-            title: "Discover the Magic of the Turquoise Coast",
+            titlePrefix: "Discover the Magic of the",
+            titleHighlight: "Turquoise Coast",
             subtitle: "Premium tours, private transfers, and unforgettable experiences in Fethiye, Turkey.",
             cta: "Explore Tours",
         },
@@ -85,7 +86,8 @@ export const translations = {
             callUs: "Bizi Arayın",
         },
         hero: {
-            title: "Turkuaz Kıyıların Büyüsünü Keşfedin",
+            titlePrefix: "Turkuaz Kıyıların",
+            titleHighlight: "Büyüsünü Keşfedin",
             subtitle: "Fethiye'de premium turlar, özel transferler ve unutulmaz deneyimler.",
             cta: "Turları İncele",
         },

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Phone, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
 import { COMPANY_INFO, IMAGES } from '../constants';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert("Thank you for your message! We will get back to you shortly.");
