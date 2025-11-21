@@ -134,13 +134,13 @@ const Home: React.FC = () => {
         </div>
 
         <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-20">
-          <h1 className="text-5xl md:text-7xl font-bold font-serif mb-6 leading-tight animate-fade-in-up drop-shadow-2xl">
-            <span className="block text-white mb-2">{t.hero.titlePrefix}</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-amber-500 pb-2">
+          <h1 className="text-5xl md:text-8xl font-bold font-serif mb-8 leading-tight animate-fade-in-up drop-shadow-2xl tracking-tight">
+            <span className="block text-white mb-2 drop-shadow-lg">{t.hero.titlePrefix}</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-amber-300 pb-4 filter drop-shadow-lg scale-105 transform origin-center">
               {t.hero.titleHighlight}
             </span>
           </h1>
-          <p className="text-xl md:text-2xl font-light max-w-2xl mb-10 opacity-90 animate-fade-in-up delay-200 drop-shadow-md">
+          <p className="text-xl md:text-3xl font-medium font-sans max-w-3xl mb-12 text-slate-50 drop-shadow-md leading-relaxed tracking-wide opacity-95 animate-fade-in-up delay-200">
             {t.hero.subtitle}
           </p>
           <Link
