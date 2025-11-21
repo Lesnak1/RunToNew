@@ -39,7 +39,10 @@ const Navbar: React.FC = () => {
   `;
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'tr' : 'en');
+    if (language === 'en') setLanguage('tr');
+    else if (language === 'tr') setLanguage('de');
+    else if (language === 'de') setLanguage('ar');
+    else setLanguage('en');
   };
 
   return (
@@ -76,7 +79,7 @@ const Navbar: React.FC = () => {
             className={`flex items-center gap-1 font-bold uppercase text-sm hover:text-secondary transition-colors ${scrolled || !isHome ? 'text-dark' : 'text-white'}`}
           >
             <Globe size={16} />
-            {language}
+            {language.toUpperCase()}
           </button>
 
           <a
@@ -96,7 +99,7 @@ const Navbar: React.FC = () => {
             className={`flex items-center gap-1 font-bold uppercase text-sm hover:text-secondary transition-colors ${scrolled || !isHome ? 'text-dark' : 'text-white'}`}
           >
             <Globe size={18} />
-            {language}
+            {language.toUpperCase()}
           </button>
 
           <button
