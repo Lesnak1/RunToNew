@@ -23,13 +23,12 @@ const Navbar: React.FC = () => {
   }, [location]);
 
   const isHome = location.pathname === '/';
-  
+
   // Dynamic header styling
-  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    scrolled || !isHome 
-      ? 'bg-white/95 backdrop-blur-md text-dark shadow-md py-2' 
+  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || !isHome
+      ? 'bg-white/95 backdrop-blur-md text-dark shadow-md py-2'
       : 'bg-transparent text-white py-6'
-  }`;
+    }`;
 
   const linkClass = (path: string) => `
     text-sm font-bold uppercase tracking-wider hover:text-secondary transition-colors relative group
@@ -57,8 +56,8 @@ const Navbar: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
             </Link>
           ))}
-          <a 
-            href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`} 
+          <a
+            href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}
             className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             <Phone size={16} />
@@ -67,8 +66,8 @@ const Navbar: React.FC = () => {
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden p-2" 
+        <button
+          className="md:hidden p-2"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
@@ -77,27 +76,29 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`md:hidden fixed inset-0 bg-dark/95 backdrop-blur-xl transition-transform duration-300 z-[60] flex items-center justify-center ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <button 
-          className="absolute top-6 right-6 text-white" 
+      <div className={`md:hidden fixed inset-0 bg-dark transition-transform duration-300 z-[100] flex items-center justify-center ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <button
+          className="absolute top-6 right-6 text-white p-2"
           onClick={() => setIsOpen(false)}
+          aria-label="Close Menu"
         >
           <X size={32} />
         </button>
-        
-        <nav className="flex flex-col items-center gap-8 text-white">
+
+        <nav className="flex flex-col items-center gap-8 text-white w-full px-4">
           <div className="font-handwriting text-4xl text-primary-light mb-4">Run To New</div>
           {NAV_ITEMS.map((item) => (
-            <Link 
-              key={item.path} 
-              to={item.path} 
+            <Link
+              key={item.path}
+              to={item.path}
               className="text-2xl font-serif font-bold hover:text-secondary transition-colors"
+              onClick={() => setIsOpen(false)}
             >
               {item.label}
             </Link>
           ))}
-          <a 
-            href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`} 
+          <a
+            href={`tel:${COMPANY_INFO.phone.replace(/\s/g, '')}`}
             className="mt-4 flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg text-lg font-bold"
           >
             <Phone size={20} />

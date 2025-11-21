@@ -42,7 +42,7 @@ export const IMAGES = {
   // Since I am out of quota, I will reuse the high quality images I have.
 
   // Butterfly Valley (High view)
-  butterflyValley: "https://images.unsplash.com/photo-1580910594678-274cb6777088?q=80&w=2070&auto=format&fit=crop",
+  butterflyValley: "/images/butterfly_valley.jpg",
   dalyan: "/images/boat.png", // Reusing boat as it's water related
   sunset: "/images/sunset.png",
 
