@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 
   // Dynamic header styling
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || !isHome
-    ? 'bg-white/95 backdrop-blur-md text-dark shadow-md py-2'
+    ? 'bg-white/95 backdrop-blur-md text-dark shadow-md py-4'
     : 'bg-transparent text-white py-6'
     }`;
 
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
