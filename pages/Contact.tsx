@@ -14,10 +14,7 @@ const Contact: React.FC = () => {
     <div className="pt-24 pb-20 bg-light dark:bg-dark min-h-screen">
       <div className="container mx-auto px-4">
 
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 dark:text-white mb-4">Get in Touch</h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">We're here to help you plan the perfect Fethiye adventure.</p>
-        </div>
+
 
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold font-serif text-slate-900 dark:text-white mb-4">{t.contact.title}</h1>
